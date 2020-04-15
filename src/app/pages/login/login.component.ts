@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
@@ -15,8 +15,10 @@ export class LoginComponent implements OnInit {
               private userService: UserService, private router: Router) {
   }
 
+  hide = true;
+
   loginForm = this.fb.group({
-    username: ['', Validators.required],
+    username: new FormControl('', Validators.required),
     password: ['', Validators.required],
   });
 
@@ -37,5 +39,4 @@ export class LoginComponent implements OnInit {
         , error => console.error('error:', error)
       );
   }
-
 }

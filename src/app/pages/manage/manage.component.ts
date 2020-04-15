@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {AppConfig} from '../../config/app-config';
 
 @Component({
   selector: 'app-manage',
@@ -15,7 +14,6 @@ export class ManageComponent implements OnInit {
   }
 
   getUserInfo(){
-    this.http.get(AppConfig.baseUrl + "/userInfo", )
   }
 
 }
