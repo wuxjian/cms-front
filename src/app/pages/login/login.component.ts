@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import {UserService} from '../../services/user.service';
 export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private http: HttpClient,
-              private userService: UserService) {
+              private userService: UserService, private router: Router) {
   }
 
   loginForm = this.fb.group({
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
           console.log(data);
           if (data.code === 0) {
             this.userService.hasLogin = true;
+            this.router.navigate(['/manage']);
           } else {
             this.userService.hasLogin = false;
           }
