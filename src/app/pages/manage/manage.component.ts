@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {AppConfig} from '../../config/app-config';
 
 @Component({
   selector: 'app-manage',
@@ -8,12 +9,17 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ManageComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
-
-  ngOnInit(): void {
+  constructor(private http: HttpClient) {
   }
 
-  getUserInfo(){
+  ngOnInit(): void {
+    this.getUserInfo();
+  }
+
+  getUserInfo() {
+    this.http.post(AppConfig.baseUrl + '/userInfo', null).toPromise().then(data => {
+      console.log(data);
+    });
   }
 
 }

@@ -1,18 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import {UserService} from '../../services/user.service';
+import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {AppConfig} from '../../config/app-config';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.less']
+  styleUrls: ['./login.component.less'],
 })
 export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private http: HttpClient,
-              private userService: UserService, private router: Router) {
+              private authService: AuthService, private router: Router,
+              private _snackBar: MatSnackBar) {
   }
 
   hide = true;
@@ -26,17 +29,26 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.http.post<any>('http://127.0.0.1:9000/login', this.loginForm.value)
+    const baseUrl = AppConfig.baseUrl;
+    this.http.post<any>(`${baseUrl}/login`, this.loginForm.value)
       .subscribe(data => {
-          console.log(data);
           if (data.code === 0) {
-            this.userService.hasLogin = true;
+            this.authService.authSuccess(data);
             this.router.navigate(['/manage']);
           } else {
-            this.userService.hasLogin = false;
+            this._snackBar.open(data.msg, '', {
+              duration: 2000,
+              verticalPosition: 'top',
+            });
           }
         }
-        , error => console.error('error:', error)
+        , error => {
+          console.error('error:', error);
+          this._snackBar.open('服务正忙...', '', {
+            duration: 2000,
+            verticalPosition: 'top',
+          });
+        }
       );
   }
 }
