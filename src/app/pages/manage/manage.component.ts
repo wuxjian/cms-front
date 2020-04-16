@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {AppConfig} from '../../config/app-config';
 import {UserService} from '../../services/user.service';
 
 @Component({
@@ -15,7 +13,6 @@ export class ManageComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.getUserInfo();
-    console.log(this.user);
   }
 
 }

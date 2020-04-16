@@ -15,6 +15,11 @@ export class AuthService {
     this.userService.initUserInfo();
   }
 
+  removeAuthToken(){
+    localStorage.removeItem(AppConfig.user);
+    localStorage.removeItem(AppConfig.token);
+  }
+
   getAuthToken() {
     return localStorage.getItem(AppConfig.token);
   }
