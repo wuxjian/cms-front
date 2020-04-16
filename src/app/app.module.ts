@@ -17,13 +17,20 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {AuthInterceptor} from './interceptors/auth.interceptor';
+import { HeaderComponent } from './pages/manage/header/header.component';
+import { SidebarComponent } from './pages/manage/sidebar/sidebar.component';
+import { ContentComponent } from './pages/manage/content/content.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ManageComponent
+    ManageComponent,
+    HeaderComponent,
+    SidebarComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +46,7 @@ import {AuthInterceptor} from './interceptors/auth.interceptor';
     MatCardModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatSidenavModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
