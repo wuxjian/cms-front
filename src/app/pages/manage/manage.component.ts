@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AppConfig} from '../../config/app-config';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-manage',
@@ -8,18 +9,13 @@ import {AppConfig} from '../../config/app-config';
   styleUrls: ['./manage.component.less']
 })
 export class ManageComponent implements OnInit {
-
-  constructor(private http: HttpClient) {
+  user;
+  constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.getUserInfo();
-  }
-
-  getUserInfo() {
-    this.http.post(AppConfig.baseUrl + '/userInfo', null).toPromise().then(data => {
-      console.log(data);
-    });
+    this.user = this.userService.getUserInfo();
+    console.log(this.user);
   }
 
 }
