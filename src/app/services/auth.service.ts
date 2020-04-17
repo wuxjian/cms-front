@@ -1,23 +1,25 @@
 import {Injectable} from '@angular/core';
 import {AppConfig} from '../config/app-config';
 import {UserService} from './user.service';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
-  authSuccess(data: any) {
+  async authSuccess(data: any) {
     localStorage.setItem(AppConfig.token, data.data);
-    this.userService.initUserInfo();
+    await this.userService.initUserInfo();
   }
 
   removeAuthToken(){
     localStorage.removeItem(AppConfig.user);
     localStorage.removeItem(AppConfig.token);
+    this.router.navigate(['/login']);
   }
 
   getAuthToken() {

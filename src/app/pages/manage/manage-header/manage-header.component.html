@@ -1,0 +1,33 @@
+<mat-toolbar color="primary" class="header mat-elevation-z10">
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="toggleDrawer()"
+  >
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span>cms-front</span>
+
+  <span class="spacer"></span>
+
+  <img [src]="user.pic">
+  <div class="user-info">
+    &nbsp;&nbsp;你好,&nbsp;<span class="user">{{user.nickname}}</span>&nbsp;&nbsp;
+  </div>
+  <div class="options-menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="modifyPassword()">
+        <mat-icon>lock</mat-icon>
+        <span>修改密码</span>
+      </button>
+      <button mat-menu-item (click)="quit()">
+        <mat-icon>close</mat-icon>
+        <span>退出</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

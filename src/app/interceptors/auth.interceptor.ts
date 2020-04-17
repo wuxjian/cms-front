@@ -27,7 +27,6 @@ export class AuthInterceptor implements AuthInterceptor {
         if (event instanceof HttpResponse && event.body) {
           if (event.body.code === 501 || event.body.code === 502) {
             this.authService.removeAuthToken();
-            this.router.navigate(['/login']);
           }
         }
       })

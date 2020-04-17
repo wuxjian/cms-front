@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './pages/login/login.component';
-import {ManageComponent} from './pages/manage/manage.component';
+import {ManageLayoutComponent} from './pages/manage/layout/manage-layout.component';
 
 
 const routes: Routes = [
   {path: '', component: LoginComponent, pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'manage', component: ManageComponent},
+  {path: 'manage', component: ManageLayoutComponent},
 ];
 
 @NgModule({

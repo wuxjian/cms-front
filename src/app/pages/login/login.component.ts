@@ -5,6 +5,7 @@ import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AppConfig} from '../../config/app-config';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private http: HttpClient,
               private authService: AuthService, private router: Router,
-              private _snackBar: MatSnackBar) {
+              private _snackBar: MatSnackBar, private userService: UserService) {
   }
 
   hide = true;
@@ -31,9 +32,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const baseUrl = AppConfig.baseUrl;
     this.http.post<any>(`${baseUrl}/login`, this.loginForm.value)
-      .subscribe(data => {
+      .subscribe(async data => {
           if (data.code === 0) {
-            this.authService.authSuccess(data);
+            await this.authService.authSuccess(data);
             this.router.navigate(['/manage']);
           } else {
             this._snackBar.open(data.msg, '', {
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
         }
         , error => {
           console.error('error:', error);
-          this._snackBar.open('服务正忙...', '', {
+          this._snackBar.open('服务器正忙...', '', {
             duration: 2000,
             verticalPosition: 'top',
           });
