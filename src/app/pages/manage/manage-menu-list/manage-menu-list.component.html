@@ -1,0 +1,10 @@
+<mat-nav-list class="menu-list">
+  <div *ngFor="let menu of menuList; index as i" (click)="onMenuSelect(i)">
+    <a mat-list-item class="menu-item" [ngClass]="{'active': i == activeIndex}">
+      <mat-icon>{{menu.icon}}</mat-icon>
+      &nbsp;&nbsp;&nbsp;
+      <span>{{menu.name}}</span>
+    </a>
+    <mat-divider></mat-divider>
+  </div>
+</mat-nav-list>

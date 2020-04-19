@@ -23,6 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { ManageHeaderComponent } from './pages/manage/manage-header/manage-header.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {ManageMenuListComponent} from './pages/manage/manage-menu-list/manage-menu-list.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {MatMenuModule} from '@angular/material/menu';
     LoginComponent,
     ManageLayoutComponent,
     ManageHeaderComponent,
+    ManageMenuListComponent,
   ],
   imports: [
     BrowserModule,
