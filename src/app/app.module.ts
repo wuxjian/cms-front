@@ -17,7 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {AuthInterceptor} from './interceptors/auth.interceptor';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { ManageLayoutComponent } from './pages/manage/layout/manage-layout.component';
+import { ManageLayoutComponent } from './pages/manage/manage-layout/manage-layout.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
