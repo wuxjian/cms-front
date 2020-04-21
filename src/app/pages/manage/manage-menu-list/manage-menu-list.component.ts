@@ -21,6 +21,10 @@ export class ManageMenuListComponent implements OnInit {
       name: '相  册',
     },
     {
+      icon: 'attach_file',
+      name: '文  件',
+    },
+    {
       icon: 'account_box',
       name: '我  的',
     },
