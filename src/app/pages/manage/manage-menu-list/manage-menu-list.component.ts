@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-manage-menu-list',
@@ -11,6 +12,7 @@ export class ManageMenuListComponent implements OnInit {
     {
       icon: 'dashboard',
       name: '仪表盘',
+      url: '/dashboard',
     },
     {
       icon: 'book',
@@ -23,6 +25,7 @@ export class ManageMenuListComponent implements OnInit {
     {
       icon: 'attach_file',
       name: '文  件',
+      url: '/files'
     },
     {
       icon: 'account_box',
@@ -33,7 +36,7 @@ export class ManageMenuListComponent implements OnInit {
 
   activeIndex = 0;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
@@ -41,6 +44,11 @@ export class ManageMenuListComponent implements OnInit {
 
   onMenuSelect(index: number) {
     this.activeIndex = index;
+    const item = this.menuList[index];
+    if (item.url) {
+      this.router.navigate([`/manage/${item.url}`]);
+    }
+
   }
 
 }
