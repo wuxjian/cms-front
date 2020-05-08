@@ -24,6 +24,12 @@ import { MatListModule } from '@angular/material/list';
 import { ManageHeaderComponent } from './pages/manage/manage-header/manage-header.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {ManageMenuListComponent} from './pages/manage/manage-menu-list/manage-menu-list.component';
+import { ArticleListComponent } from './pages/article/article-list/article-list.component';
+import { FileListComponent } from './pages/file/file-list/file-list.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSortModule} from '@angular/material/sort';
 
 
 @NgModule({
@@ -33,6 +39,8 @@ import {ManageMenuListComponent} from './pages/manage/manage-menu-list/manage-me
     ManageLayoutComponent,
     ManageHeaderComponent,
     ManageMenuListComponent,
+    ArticleListComponent,
+    FileListComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +61,10 @@ import {ManageMenuListComponent} from './pages/manage/manage-menu-list/manage-me
     MatToolbarModule,
     MatListModule,
     MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
