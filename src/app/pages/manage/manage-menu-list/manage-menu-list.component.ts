@@ -12,7 +12,7 @@ export class ManageMenuListComponent implements OnInit {
     {
       icon: 'dashboard',
       name: '仪表盘',
-      url: '/dashboard',
+      url: 'dashboard',
     },
     {
       icon: 'book',
@@ -25,7 +25,7 @@ export class ManageMenuListComponent implements OnInit {
     {
       icon: 'attach_file',
       name: '文  件',
-      url: '/files'
+      url: 'files'
     },
     {
       icon: 'account_box',

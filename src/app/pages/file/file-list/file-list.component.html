@@ -1,46 +1,52 @@
-<div class="example-container mat-elevation-z8">
-  <div class="example-loading-shade"
-       *ngIf="isLoadingResults || isRateLimitReached">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>资源列表</span>
+    <span class="full"></span>
+    <mat-icon (click)="openDialog()" class="upload" aria-hidden="false" aria-label="Example add icon">note_add</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="assets-container mat-elevation-z8">
+  <div class="assets-loading-shade"
+       *ngIf="isLoadingResults">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-      GitHub's API rate limit has been reached. It will be reset in one minute.
-    </div>
   </div>
 
-  <div class="example-table-container">
+  <div class="assets-table-container">
 
-    <table mat-table [dataSource]="data" class="example-table"
-           matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
-      <!-- Number Column -->
-      <ng-container matColumnDef="number">
-        <th mat-header-cell *matHeaderCellDef>#</th>
-        <td mat-cell *matCellDef="let row">{{row.number}}</td>
+    <table mat-table [dataSource]="data" class="assets-table">
+      <!-- 文件名 -->
+      <ng-container matColumnDef="fileName">
+        <th mat-header-cell *matHeaderCellDef>文件名</th>
+        <td mat-cell *matCellDef="let row">{{row.fileName}}</td>
       </ng-container>
 
-      <!-- Title Column -->
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>Title</th>
-        <td mat-cell *matCellDef="let row">{{row.title}}</td>
+      <ng-container matColumnDef="isImage">
+        <th mat-header-cell *matHeaderCellDef>是否图片</th>
+        <td mat-cell *matCellDef="let row">{{row.isImage ? '是' : '否'}}</td>
       </ng-container>
 
-      <!-- State Column -->
-      <ng-container matColumnDef="state">
-        <th mat-header-cell *matHeaderCellDef>State</th>
-        <td mat-cell *matCellDef="let row">{{row.state}}</td>
+      <ng-container matColumnDef="tinyFilePath">
+        <th mat-header-cell *matHeaderCellDef>服务器路径</th>
+        <td mat-cell *matCellDef="let row">{{row.tinyFilePath}}</td>
       </ng-container>
 
-      <!-- Created Column -->
-      <ng-container matColumnDef="created">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-          Created
+      <ng-container matColumnDef="cdnPath">
+        <th mat-header-cell *matHeaderCellDef >
+          CDN路径
         </th>
-        <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
+        <td mat-cell *matCellDef="let row">{{row.cdnPath}}</td>
       </ng-container>
-
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef >
+          创建时间
+        </th>
+        <td mat-cell *matCellDef="let row">{{row.createdAt}}</td>
+      </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
 
-  <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+  <mat-paginator [length]="resultsLength" [pageSize]="5" ></mat-paginator>
 </div>

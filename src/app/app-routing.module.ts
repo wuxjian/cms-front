@@ -3,8 +3,8 @@ import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './pages/login/login.component';
 import {ManageLayoutComponent} from './pages/manage/manage-layout/manage-layout.component';
 import {AuthGuard} from './auth/auth.guard';
-import {FilesComponent} from './pages/files/files.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
+import {FileListComponent} from './pages/file/file-list/file-list.component';
 
 
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
     path: 'manage', component: ManageLayoutComponent, canActivate: [AuthGuard], children: [
       {path: '', component: DashboardComponent, pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent},
-      {path: 'files', component: FilesComponent},
+      {path: 'files', component: FileListComponent},
     ]
   },
 ];

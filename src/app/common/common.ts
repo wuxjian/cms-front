@@ -3,3 +3,11 @@ export class Result<T> {
   msg: string;
   data: T;
 }
+
+export class Page<T> {
+  currentPage: number;
+  pageSize: number;
+  totalPage: number;
+  totalRecord: number;
+  list: Array<T>;
+}

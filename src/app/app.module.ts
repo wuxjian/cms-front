@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -24,10 +24,14 @@ import { MatListModule } from '@angular/material/list';
 import { ManageHeaderComponent } from './pages/manage/manage-header/manage-header.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {ManageMenuListComponent} from './pages/manage/manage-menu-list/manage-menu-list.component';
-import { FilesComponent } from './pages/files/files.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
+import {FileListComponent} from './pages/file/file-list/file-list.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatPaginatorIntlCro} from './common/MyMatPaginatorIntl';
+import { FileAddComponent } from './pages/file/file-add/file-add.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -37,8 +41,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ManageLayoutComponent,
     ManageHeaderComponent,
     ManageMenuListComponent,
-    FilesComponent,
+    FileListComponent,
     DashboardComponent,
+    FileAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,9 +66,13 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatMenuModule,
     MatTableModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    FormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro },
   ],
   bootstrap: [AppComponent]
 })
