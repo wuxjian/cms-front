@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map, startWith, switchMap} from 'rxjs/operators';
@@ -17,7 +16,7 @@ import {FileAddComponent} from '../file-add/file-add.component';
   entryComponents: [FileAddComponent],
 })
 export class FileListComponent implements AfterViewInit {
-  displayedColumns: string[] = ['fileName', 'isImage', 'tinyFilePath', 'cdnPath', 'createdAt'];
+  displayedColumns: string[] = ['fileName', 'isImage', 'preview', 'tinyFilePath', 'cdnPath', 'createdAt'];
   assetsDatabase: AssetsHttpDatabase | null;
   data: Assets[] = [];
 
@@ -26,7 +25,6 @@ export class FileListComponent implements AfterViewInit {
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private http: HttpClient, public dialog: MatDialog) {
   }
@@ -39,13 +37,19 @@ export class FileListComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if (result) {
+        this.page(true);
+      }
     });
   }
 
 
   ngAfterViewInit() {
     this.assetsDatabase = new AssetsHttpDatabase(this.http);
+    this.page(true);
+  }
+
+  page(firstPage: boolean = false) {
     this.paginator.page.pipe()
       .pipe(
         startWith({}),

@@ -23,7 +23,13 @@
 
       <ng-container matColumnDef="isImage">
         <th mat-header-cell *matHeaderCellDef>是否图片</th>
-        <td mat-cell *matCellDef="let row">{{row.isImage ? '是' : '否'}}</td>
+        <td mat-cell *matCellDef="let row">{{row.isImage == '1' ? '是' : '否'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="preview">
+        <th mat-header-cell *matHeaderCellDef>预览</th>
+        <td mat-cell *matCellDef="let row">
+          <img *ngIf="row.isImage == '1'" src="{{row.cdnPath}}" alt="">
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="tinyFilePath">
